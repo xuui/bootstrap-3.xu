@@ -258,11 +258,11 @@ module.exports = function (grunt) {
     },
 
     copy: {
-      fonts: {
-        expand: true,
-        src: 'fonts/**',
-        dest: 'dist/'
-      },
+    //  fonts: {
+    //    expand: true,
+    //    src: 'fonts/**',
+    //    dest: 'dist/'
+    //  },
       docs: {
         expand: true,
         cwd: 'dist/',
@@ -396,14 +396,16 @@ module.exports = function (grunt) {
   grunt.registerTask('dist-css', ['less:core', 'less:theme', 'postcss:core', 'postcss:theme', 'cssmin:core', 'cssmin:theme']);
 
   // Full distribution task.
-  grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
+  //grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);
+  grunt.registerTask('dist', ['clean:dist', 'dist-css', 'dist-js']);
 
   // Default task.
-  grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
+  //grunt.registerTask('default', ['clean:dist', 'copy:fonts', 'test']);
+  grunt.registerTask('default', ['clean:dist', 'test']);
 
-  grunt.registerTask('build-glyphicons-data', function () {
-    generateGlyphiconsData.call(this, grunt);
-  });
+  //grunt.registerTask('build-glyphicons-data', function () {
+  //  generateGlyphiconsData.call(this, grunt);
+  //});
 
   // task for building customizer
   grunt.registerTask('build-customizer', ['build-customizer-html', 'build-raw-files']);
@@ -424,7 +426,8 @@ module.exports = function (grunt) {
   grunt.registerTask('lint-docs-css', ['stylelint:docs', 'stylelint:examples']);
   grunt.registerTask('docs-js', ['uglify:docs', 'uglify:customize']);
   grunt.registerTask('lint-docs-js', ['jshint:assets', 'jscs:assets']);
-  grunt.registerTask('docs', ['docs-css', 'lint-docs-css', 'docs-js', 'lint-docs-js', 'clean:docs', 'copy:docs', 'build-glyphicons-data', 'build-customizer']);
+  //  grunt.registerTask('docs', ['docs-css', 'lint-docs-css', 'docs-js', 'lint-docs-js', 'clean:docs', 'copy:docs', 'build-glyphicons-data', 'build-customizer']);
+  grunt.registerTask('docs', ['docs-css', 'lint-docs-css', 'docs-js', 'lint-docs-js', 'clean:docs', 'copy:docs', 'build-customizer']);
 
   grunt.registerTask('prep-release', ['dist', 'docs', 'jekyll:github']);
 };
